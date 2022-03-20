@@ -1,3 +1,4 @@
+import Card from "../components/Card";
 import Layout from "../components/Layout";
 
 export default function Home() {
@@ -25,29 +26,42 @@ export default function Home() {
       </div>
 
       <div className="h-auto w-11/12 mx-auto py-2">
-        <h1 className="text-4xl font-semibold py-2.5 text-gray-500">
-          Most Recent
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="text-4xl font-semibold py-2.5 text-gray-500">
+            Most Recent
+          </h1>
+          <button className="flex text-yellow-500 items-center gap-1">
+            explore all
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              className="h-4 w-4 mt-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
+              />
+            </svg>
+          </button>
+        </div>
         <div className="flex flex-col md:flex-row gap-2">
-          <div className="bg-red-500 w-full h-72"></div>
+          <Card />
           <div className="w-full md:w-2/5 flex md:flex-col gap-2">
-            <div className="w-full aspect-card bg-blue-500">
-              <div className="w-full h-3/4 bg-gray-400"></div>
-              <p className="font-medium p-1">
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-              </p>
-            </div>
-            <div className="w-full aspect-card bg-green-500"></div>
+            <Card />
+            <Card />
           </div>
         </div>
       </div>
 
-      <div className="w-5/6 my-4 mx-auto flex justify-between md:h-64 sm:h-44 h-32 bg-gradient-to-br from-pink-300 via-pink-200 to-red-300">
+      <div className=" shadow-lg hover:shadow-xl cursor-pointer w-5/6 my-4 mx-auto flex justify-between md:h-64 sm:h-44 h-32 bg-gradient-to-br from-pink-300 via-pink-200 to-red-300">
         <p className="text-2xl md:text-5xl w-1/3 ml-8 h-full flex justify-center flex-col text-black">
           Become a <span className="font-medium">Blogger.</span>
         </p>
         <p className="h-full flex items-center pr-6 font-bold">JOIN NOW</p>
       </div>
+
+      <p className="text-center text-4xl py-8">Discover the latest in...</p>
 
       <div className="w-11/12 mx-auto h-auto">
         <p className="flex justify-between text-yellow-500 items-center">
@@ -67,14 +81,15 @@ export default function Home() {
             </svg>
           </button>
         </p>
+        <hr className="w-full mb-2" />
         <div className="grid md:grid-cols-3 gap-2 my-2">
-          <div className="w-full h-40 md:h-64 bg-blue-500"></div>
-          <div className="w-full h-40 md:h-64 bg-green-500"></div>
-          <div className="w-full h-40 md:h-64 bg-red-500"></div>
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
 
-      <div className="w-11/12 mx-auto h-auto">
+      <div className="w-11/12 mt-8 mx-auto h-auto">
         <p className="flex justify-between text-yellow-500 items-center">
           <h1 className="font-semibold text-3xl text-gray-700">TECHNOLOGY</h1>
           <button className="flex items-center gap-1">
@@ -92,14 +107,15 @@ export default function Home() {
             </svg>
           </button>
         </p>
+        <hr className="w-full mb-2" />
         <div className="grid md:grid-cols-3 gap-2 my-2">
-          <div className="w-full h-40 md:h-64 bg-blue-500"></div>
-          <div className="w-full h-40 md:h-64 bg-green-500"></div>
-          <div className="w-full h-40 md:h-64 bg-red-500"></div>
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
 
-      <div className="w-11/12 mx-auto h-auto">
+      <div className="w-11/12 mx-auto mt-8 h-auto">
         <p className="flex justify-between text-yellow-500 items-center">
           <h1 className="font-semibold text-3xl text-gray-700">
             ENTERTAINMENT
@@ -119,16 +135,35 @@ export default function Home() {
             </svg>
           </button>
         </p>
+        <hr className="w-full mb-2" />
         <div className="grid md:grid-cols-3 gap-2 my-2">
-          <div className="w-full h-40 md:h-64 bg-blue-500"></div>
-          <div className="w-full h-40 md:h-64 bg-green-500"></div>
-          <div className="w-full h-40 md:h-64 bg-red-500"></div>
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </div>
+
+      <div className="py-20 mt-6 bg-gradient-to-br from-purple-50 via-violet-100 to-blue-50">
+        <div className="text-center w-10/12 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
+          <h1 className="text-3xl font-semibold pb-2">
+            Become a member for free
+          </h1>
+          <p className="text-lg pb-2">
+            Sign up to receive notifications and be able to comment and discuss
+            on posts
+          </p>
+          <button className="py-2 bg-yellow-500 px-4 rounded-lg ring-2 ring-white text-white font-medium">
+            Register your account
+          </button>
         </div>
       </div>
 
       <style jsx>{`
         .aspect-card {
           aspect-ratio: 1/0.65;
+        }
+        .aspect-img {
+          aspect-ratio: 1/0.56;
         }
         #categories:after {
           z-index: 1;
