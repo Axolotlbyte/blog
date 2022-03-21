@@ -1,4 +1,4 @@
-const Navbar = () => {
+const Navbar = ({ handleToggle }) => {
   return (
     <header className="fixed top-0 z-50 justify-between bg-gradient-to-br from-purple-600 via-violet-500 to-blue-600 flex items-center h-20 w-full bg-white">
       <svg
@@ -42,7 +42,7 @@ const Navbar = () => {
           fill="#fff"
         />
       </svg>
-      <button className="w-20 h-auto font-medium py-1.5 bg-yellow-500 ring-2 ring-white mr-3 rounded-lg text-base text-white">
+      <button onClick={handleToggle} className="w-20 h-auto font-medium py-1.5 bg-yellow-500 ring-2 ring-white mr-3 rounded-lg text-base text-white">
         Sign in
       </button>
     </header>

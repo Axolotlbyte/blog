@@ -143,21 +143,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="py-20 mt-6 bg-gradient-to-br from-purple-50 via-violet-100 to-blue-50">
-        <div className="text-center w-10/12 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
-          <h1 className="text-3xl font-semibold pb-2">
-            Become a member for free
-          </h1>
-          <p className="text-lg pb-2">
-            Sign up to receive notifications and be able to comment and discuss
-            on posts
-          </p>
-          <button className="py-2 bg-yellow-500 px-4 rounded-lg ring-2 ring-white text-white font-medium">
-            Register your account
-          </button>
-        </div>
-      </div>
-
       <style jsx>{`
         .aspect-card {
           aspect-ratio: 1/0.65;
