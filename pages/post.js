@@ -4,15 +4,15 @@ const post = () => {
   return (
     <Layout>
       <div className="pt-24">
-        <div className="mx-auto h-auto w-11/12 sm:w-10/12 md:w-3/4">
+        <div className=" h-auto w-11/12 lg:w-3/5 md:ml-16 lg:ml-24 mx-auto md:mx-0 sm:w-10/12 md:w-3/4">
           <div className="w-full aspect-img bg-gray-300"></div>
           <div className="">
-            <h1>What is Lorem Ipsum?</h1>
-            <div className="flex items-center">
+            <h1 className="text-4xl pb-4">What is Lorem Ipsum?</h1>
+            <div className="flex items-center pb-4">
               <div className="w-10 h-10 ring-blue-500 bg-gradient-to-br from-red-400 via-orange-600 to bg-yellow-700 rounded-full ring-2"></div>
               <p className="font-medium pl-2 text-lg">Jack daniels</p>
             </div>
-            <p>
+            <p className="text-lg">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of

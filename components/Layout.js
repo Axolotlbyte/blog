@@ -26,7 +26,10 @@ const Layout = ({ children }) => {
               Sign up to receive notifications and be able to comment and
               discuss on posts
             </p>
-            <button onClick={() => setToggle(true)} className="py-4 bg-yellow-500 mt-4 px-4 rounded-lg ring-2 ring-white text-white font-medium">
+            <button
+              onClick={() => setToggle(true)}
+              className="py-4 bg-yellow-500 mt-4 px-4 rounded-lg ring-2 ring-white text-white font-medium"
+            >
               Register your account
             </button>
           </div>
