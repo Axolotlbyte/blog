@@ -1,4 +1,9 @@
-const Navbar = ({ handleToggle }) => {
+import { useState } from "react";
+import DropDown from "./DropDown";
+
+const Navbar = ({ handleToggle, isLoggedIn, logOut, role }) => {
+  const [menu, setMenu] = useState(false);
+
   return (
     <header className="fixed top-0 z-50 justify-between bg-gradient-to-br from-purple-600 via-violet-500 to-blue-600 flex items-center h-20 w-full bg-white">
       <svg
@@ -42,9 +47,32 @@ const Navbar = ({ handleToggle }) => {
           fill="#fff"
         />
       </svg>
-      <button onClick={handleToggle} className="w-20 h-auto font-medium py-1.5 bg-yellow-500 ring-2 ring-white mr-3 rounded-lg text-base text-white">
-        Sign in
-      </button>
+      {isLoggedIn ? (
+        <button
+          onClick={() => setMenu(!menu)}
+          style={{ zIndex: 51 }}
+          className="w-10 h-10 overflow-visible flex relative items-center justify-center mr-4 ring-2 rounded-full ring-white bg-yellow-500"
+        >
+          <div className="relative overflow-hidden flex justify-center rounded-full w-10 h-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              className="bi bi-person-fill w-12 h-12 absolute -bottom-2  text-white"
+              viewBox="0 0 16 16"
+            >
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            </svg>
+          </div>
+          <DropDown visibility={menu} logOut={logOut} role={role} />
+        </button>
+      ) : (
+        <button
+          onClick={handleToggle}
+          className="w-20 h-auto font-medium py-1.5 bg-yellow-500 ring-2 ring-white mr-3 rounded-lg text-base text-white"
+        >
+          Sign in
+        </button>
+      )}
     </header>
   );
 };
