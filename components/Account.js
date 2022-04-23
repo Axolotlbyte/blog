@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { create, login } from "../services/user.service";
-import Signin from "./signin";
+import Signin from "./Signin";
 import Signup from "./Signup";
 
 export default function Account({ toggle, handleToggle, register, loggedIn }) {
