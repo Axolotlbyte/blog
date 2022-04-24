@@ -2,6 +2,16 @@ import Image from "next/image";
 import axios from "axios";
 import Layout from "../../components/Layout";
 import Comments from "../../components/Comments";
+import TextEditor from "../../components/TextEditor";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(
+  () => {
+    return import("draft-js").then((mod) => mod.Editor);
+  },
+  { ssr: false }
+);
 
 export const getStaticPaths = async () => {
   const res = await axios.get(`${process.env.API_URL}/api/article`);
@@ -36,7 +46,7 @@ const post = ({ title, content, image, user, _id, comment }) => {
         </div>
         <div className=" h-auto w-11/12 lg:w-3/5 md:ml-16 lg:ml-24 mx-auto md:mx-0 sm:w-10/12 md:w-3/4">
           <div className="">
-            <h1 className="text-4xl py-4">{title}</h1>
+            <h1 className="text-4xl font-semibold py-4">{title}</h1>
             <div className="flex items-center pb-4">
               <div className="w-5 h-5 relative overflow-hidden flex items-center justify-center text-white ring-blue-500 bg-gradient-to-br from-purple-400 via-violet-400 to-blue-500 rounded-full ring-2">
                 <svg
@@ -50,7 +60,15 @@ const post = ({ title, content, image, user, _id, comment }) => {
               </div>
               <p className="font-medium pl-2 text-base">{user.username}</p>
             </div>
-            <p className="text-lg leading-8 ">{content}</p>
+            {/* <p className="text-lg leading-8 ">{content}</p> */}
+            <p className="leading-8 text-lg">
+              <Editor
+                readOnly={true}
+                editorState={EditorState.createWithContent(
+                  convertFromRaw(JSON.parse(content))
+                )}
+              />
+            </p>
           </div>
         </div>
         <Comments id={_id} comments={comment} />

@@ -1,26 +1,23 @@
 import Layout from "../../components/Layout";
-// import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import dynamic from "next/dynamic";
-const Editor = dynamic(
-  () => {
-    return import("react-draft-wysiwyg").then((mod) => mod.Editor);
-  },
-  { ssr: false }
-);
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import { categories } from "../../services/blog.service";
+import TextEditor from "../../components/TextEditor";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import { post } from "../../services/user.service";
 
 const Create = () => {
-  const [editorState, setEditorState] = useState("");
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [options, setOptions] = useState([]);
+
   const [category, setCategory] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [content, setContent] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     categories()
       .then((res) => {
-        console.log(res);
         setOptions(
           res.data.map((option) => {
             return { value: option._id, label: option.name };
@@ -30,9 +27,33 @@ const Create = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    console.log(editorState);
-  }, [editorState]);
+  const onEditorStateChange = (e) => {
+    const contentState = e.getCurrentContent();
+    console.log("content state", convertToRaw(contentState));
+    setContent(JSON.stringify(convertToRaw(contentState)));
+    return setEditorState(e);
+  };
+
+  const handleSubmit = async () => {
+    if (
+      title !== null &&
+      image !== null &&
+      content !== null &&
+      category !== null
+    ) {
+      return await post(title, image, content, category.value)
+        .then((res) => {
+          console.log(res);
+          setCategory(null);
+          setTitle(null);
+          setContent(null);
+          setImage(null);
+          setEditorState(EditorState.createEmpty());
+        })
+        .catch((err) => console.log(err));
+    }
+    return;
+  };
 
   return (
     <Layout>
@@ -51,7 +72,7 @@ const Create = () => {
               </svg>
             </p>
             <hr />
-
+            <small className="mt-2 text-gray-500">all feilds below are required <span className="text-red-500">*</span></small>
             <div className="w-full flex items-center">
               <button className="border-b-2 p-1 py-1.5">
                 <svg
@@ -70,8 +91,10 @@ const Create = () => {
                 </svg>
               </button>
               <input
-                type="text"
-                placeholder="Image URL"
+                type="url"
+                value={image === null ? "" : image}
+                onChange={(e) => setImage(e.target.value)}
+                placeholder="Image URL (image url from images.unsplash.com only)"
                 className="border-b-2 w-full text-lg my-2 p-1 outline-none"
               />
             </div>
@@ -95,6 +118,8 @@ const Create = () => {
               </button>
               <input
                 type="text"
+                value={title === null ? "" : title}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
                 className="border-b-2 w-full text-lg my-2 p-1 outline-none"
               />
@@ -110,14 +135,18 @@ const Create = () => {
             </div>
 
             <div className="mt-4">
-              <Editor
+              <TextEditor
                 editorState={editorState}
-                toolbarClassName="toolbarClassName"
-                wrapperClassName="border-2"
-                editorClassName="p-4 pt-0"
-                onEditorStateChange={(e) => setEditorState(e)}
+                setEditorState={onEditorStateChange}
               />
             </div>
+
+            <button
+              onClick={handleSubmit}
+              className=" justify-end mt-3 w-full bg-yellow-500 text-white font-semibold p-1 rounded-md ring-2 ring-blue-500 "
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>

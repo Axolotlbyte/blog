@@ -10,6 +10,7 @@ export const login = async (email, password) => {
     return res.data;
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 
@@ -19,6 +20,7 @@ export const check = async () => {
 
     return res.data;
   } catch (err) {
+    console.log(err);
     return err;
   }
 };
@@ -29,6 +31,7 @@ export const logout = async () => {
     return res.data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -44,6 +47,7 @@ export const create = async (email, username, password) => {
     return res.data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -54,15 +58,17 @@ export const comment = async (text, id) => {
     return res.data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
-export const post = async (title, image, content) => {
+export const post = async (title, image, content, category) => {
   try {
-    const body = { title, image, content };
+    const body = { title, image, content, category };
     const res = await axios.post(`/api/posts`, body);
     return res.data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };

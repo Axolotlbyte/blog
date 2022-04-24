@@ -36,7 +36,7 @@ const DropDown = ({ visibility, logOut, role }) => {
       </div>
 
       {role === "admin" ? (
-        <div className="w-full text-white h-10 flex items-center justify-start">
+        <div onClick={() => router.push("/posts")} className="w-full text-white h-10 flex items-center justify-start">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

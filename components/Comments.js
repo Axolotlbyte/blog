@@ -20,12 +20,18 @@ const Comments = ({ id, comments }) => {
     setComments(comments);
   }, []);
 
-  const submitComment = async () =>
-    comment(text, id).then((res) => {
-      console.log(res.comment);
-      setComments([...res.comment]);
-      setText("");
-    });
+  const submitComment = async () => {
+    if (text.length !== 0) {
+      return await comment(text, id)
+        .then((res) => {
+          console.log(res.comment);
+          setComments([...res.comment]);
+          setText("");
+        })
+        .catch((err) => console.log(err));
+    }
+    return;
+  };
 
   return (
     <div id="comments" className=" my-8 h-auto">

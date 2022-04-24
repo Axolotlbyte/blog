@@ -18,12 +18,13 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const token = extractToken(`${req.headers["cookie"]}`);
 
-    const { title, image, content } = req.body;
+    const { title, image, content, category } = req.body;
 
     const body = {
       title,
       image,
       content,
+      category,
     };
 
     const result = await axios.post(
