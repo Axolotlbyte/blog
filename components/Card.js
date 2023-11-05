@@ -10,9 +10,25 @@ const Card = ({
   id,
   admin,
   removeButtonFunc,
+  date,
   small,
 }) => {
   const router = useRouter();
+
+  const months = [
+    { month: "Jan", id: 1 },
+    { month: "Feb", id: 2 },
+    { month: "Mar", id: 3 },
+    { month: "Apr", id: 4 },
+    { month: "May", id: 5 },
+    { month: "Jun", id: 6 },
+    { month: "Jul", id: 7 },
+    { month: "Aug", id: 8 },
+    { month: "Sep", id: 9 },
+    { month: "Oct", id: 10 },
+    { month: "Nov", id: 11 },
+    { month: "Dec", id: 12 },
+  ];
 
   return (
     <div className="relative w-full rounded-2xl overflow-hidden">
@@ -48,7 +64,9 @@ const Card = ({
               <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
             </svg> */}
 
-            <p className="text-xl font-light w-fit">{category ? category : "Category"}</p>
+            <p className="text-xl font-light w-fit">
+              {category ? category : "Category"}
+            </p>
           </span>
 
           <p
@@ -60,8 +78,7 @@ const Card = ({
             {title
               ? title.split(" ").map((word) => (
                   <span key={word} className="bg-white p-1 w-fit">
-                    {word}
-                    {" "}
+                    {word}{" "}
                   </span>
                 ))
               : "Lorem ipsum dolor si amet, hola soy dora puela si amora"}
@@ -70,7 +87,12 @@ const Card = ({
         </div>
 
         <div className="absolute bottom-5 left-5 text-lg text-white">
-          27 Jan 2024
+          {new Date(date).getDate()},{" "}
+          {
+            months.filter((month) => month.id == new Date(date).getMonth())[0]
+              .month
+          }{" "}
+          {new Date(date).getFullYear()}
         </div>
 
         <button className="absolute bottom-5 right-5 text-3xl bg-white p-3 rounded-full">

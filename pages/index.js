@@ -82,7 +82,6 @@ export default function Home({ recents, allPosts }) {
   return (
     <Layout bg={true}>
       <section className="h-auto w-11/12 mx-auto py-2">
-
         <div className="flex flex-col h-screen overflow-hidden md:flex-row gap-10">
           <div className="w-full">
             <h1 className="text-6xl font-extrabold italic pb-9 drop-shadow-xl ">
@@ -94,6 +93,7 @@ export default function Home({ recents, allPosts }) {
               id={recents[0]._id}
               category={recents[0].category ? "" : "Test"}
               image={recents[0].image}
+              date={recents[0].date}
             />
           </div>
           <div className="w-full md:w-2/6 flex flex-col pt-16 gap-2 flex-shrink-0">
@@ -104,6 +104,7 @@ export default function Home({ recents, allPosts }) {
               id={recents[1]._id}
               category={recents[1].category ? "" : "Test"}
               image={recents[1].image}
+              date={recents[1].date}
               small
             />
           </div>
@@ -120,50 +121,9 @@ export default function Home({ recents, allPosts }) {
               id={post._id}
               category={post.category ? "" : "Test"}
               image={post.image}
+              date={post.date}
             />
           ))}
-          {/* <PostCard
-            title={posts[1].title}
-            key={posts[1]._id}
-            id={posts[1]._id}
-            category={posts[1].category ? "" : "Test"}
-            image={posts[1].image}
-          />
-          <PostCard
-            title={posts[1].title}
-            key={posts[1]._id}
-            id={posts[1]._id}
-            category={posts[1].category ? "" : "Test"}
-            image={posts[1].image}
-          />
-          <PostCard
-            title={posts[1].title}
-            key={posts[1]._id}
-            id={posts[1]._id}
-            category={posts[1].category ? "" : "Test"}
-            image={posts[1].image}
-          />
-          <PostCard
-            title={posts[1].title}
-            key={posts[1]._id}
-            id={posts[1]._id}
-            category={posts[1].category ? "" : "Test"}
-            image={posts[1].image}
-          />
-          <PostCard
-            title={posts[1].title}
-            key={posts[1]._id}
-            id={posts[1]._id}
-            category={posts[1].category ? "" : "Test"}
-            image={posts[1].image}
-          />
-          <PostCard
-            title={posts[0].title}
-            key={posts[0]._id}
-            id={posts[0]._id}
-            category={posts[0].category ? "" : "Test"}
-            image={posts[0].image}
-          /> */}
         </div>
       </section>
 

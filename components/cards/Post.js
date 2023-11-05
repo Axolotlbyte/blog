@@ -3,7 +3,15 @@ import { useRouter } from "next/router";
 // import DeleteButton from "./DeleteButton";
 import { useEffect, useState } from "react";
 
-const PostCard = ({ title, category, image, id, admin, removeButtonFunc }) => {
+const PostCard = ({
+  title,
+  category,
+  image,
+  id,
+  date,
+  admin,
+  removeButtonFunc,
+}) => {
   const router = useRouter();
   const [arrOfTitle, setArrOfTitle] = useState([]);
 
@@ -39,6 +47,21 @@ const PostCard = ({ title, category, image, id, admin, removeButtonFunc }) => {
     breakTitle();
   }, []);
 
+  const months = [
+    { month: "Jan", id: 1 },
+    { month: "Feb", id: 2 },
+    { month: "Mar", id: 3 },
+    { month: "Apr", id: 4 },
+    { month: "May", id: 5 },
+    { month: "Jun", id: 6 },
+    { month: "Jul", id: 7 },
+    { month: "Aug", id: 8 },
+    { month: "Sep", id: 9 },
+    { month: "Oct", id: 10 },
+    { month: "Nov", id: 11 },
+    { month: "Dec", id: 12 },
+  ];
+
   return (
     <div className="relative w-full overflow-hidden">
       <div
@@ -71,10 +94,16 @@ const PostCard = ({ title, category, image, id, admin, removeButtonFunc }) => {
         <div className={"divide-x-2 divide-black "}>
           <div
             className={
-              "font-medium bg-white leading-snug grid rounded-xl rounded-tl-none py-2 text-3xl"
+              "font-medium bg-white leading-snug grid rounded-xl rounded-tl-none py-2 text-2xl md:text-3xl"
             }
           >
-            <p className="text-lg">27 Jan 2024</p>
+            <p className="text-base ">
+              {new Date(date).getDate()},
+              {" "}
+              {months.filter(month => month.id == new Date(date).getMonth())[0].month}
+              {" "}
+              {new Date(date).getFullYear()}
+            </p>
             <span className="flex">
               {title
                 ? title

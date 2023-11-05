@@ -42,6 +42,7 @@ export const getStaticProps = async (context) => {
 
 const post = ({ title, content, image, _id, comment, subtitle, allPosts }) => {
   console.log(content);
+  console.log(allPosts)
 
   return (
     // <Layout>
@@ -96,7 +97,7 @@ const post = ({ title, content, image, _id, comment, subtitle, allPosts }) => {
       <div className="background lg:w-10/12 mx-auto flex pb-20 pt-10 items-center justify-center h-auto">
         <section className="h-auto min-h-screen gap-10 mx-auto flex ">
           {/* <div className=" w-20 bg-black flex-shrink-0 rounded-l-2xl "></div> */}
-          <div className="flex bg-white flex-grow-0 flex-shrink rounded-2xl flex-col items-end w-3/4 mx-auto">
+          <div className="flex bg-white flex-grow-0 flex-shrink rounded-2xl flex-col items-end w-11/12 md:w-3/4 mx-auto">
             <div className="mt-4 w-full mx-auto overflow-hidden flex-grow-0">
               <TitleEditor
                 readOnly
@@ -119,7 +120,8 @@ const post = ({ title, content, image, _id, comment, subtitle, allPosts }) => {
               Publish
             </button> */}
           </div>
-          <div className="w-1/4 flex-shrink-0 relative">
+
+          <div className="w-1/4 hidden md:flex flex-col flex-shrink-0 relative">
             <div className="h-auto top-5 bg-yellow-100 rounded-xl p-2">
               <h1 className="text-2xl font-bold">Contents</h1>
               <ul className="pl-5 list-disc text-base ">
@@ -149,8 +151,8 @@ const post = ({ title, content, image, _id, comment, subtitle, allPosts }) => {
           </div>
         </section>
       </div>
-      <section className="bg-white py-8 pb-16 w-10/12 mx-auto">
-        <p className="text-4xl py-12 font-extrabold">Other Posts</p>
+      <section className="bg-white py-8 pb-16 w-11/12 md:w-10/12 mx-auto">
+        <p className="text-3xl md:text-4xl py-12 font-extrabold">Other Posts</p>
         <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-10 gap-y-14">
           {allPosts.map((post) => (
             <PostCard
@@ -159,6 +161,7 @@ const post = ({ title, content, image, _id, comment, subtitle, allPosts }) => {
               id={post._id}
               category={post.category ? "" : "Test"}
               image={post.image}
+              date={post.date}
             />
           ))}
         </div>

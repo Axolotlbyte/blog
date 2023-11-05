@@ -1,5 +1,14 @@
 import Image from "next/image";
 
+const categories = [
+  "Travel",
+  "Shopping",
+  "Gaming",
+  "Culture",
+  "Sports",
+  "Technology",
+];
+
 const TitleEditor = ({
   setTitle,
   setSubtitle,
@@ -16,16 +25,20 @@ const TitleEditor = ({
           // onChange={(e) => setTitle(e.target.value)}
           // type="text"
           // placeholder="Enter Title here..."
-          className="w-full text-5xl font-bold h-fit outline-none"
-        >{title}</h1>
+          className="w-full text-4xl md:text-5xl font-bold h-fit outline-none"
+        >
+          {title}
+        </h1>
         <h2
           // type="text"
           // onChange={(e) => setSubtitle(e.target.value)}
           // placeholder="Enter subtitle here..."
           className="w-full text-xl font-bold text-gray-600 outline-none"
-        >{subtitle}</h2>
+        >
+          {subtitle}
+        </h2>
 
-        <div className="w-full relative aspect-video overflow-hidden flex items-center rounded-3xl ">
+        <div className="w-full relative aspect-video overflow-hidden flex items-center rounded-2xl md:rounded-3xl ">
           <Image
             src={image}
             width="0"
@@ -51,6 +64,15 @@ const TitleEditor = ({
         placeholder="Enter subtitle here..."
         className="w-full text-xl font-bold text-gray-600 outline-none"
       />
+      {readOnly ? (
+        ""
+      ) : (
+        <div className="flex flex-wrap w-full py-1 gap-3">
+          {categories.map((category, i) => (
+            <button key={category} className={"p-2 font-medium border rounded-l-full rounded-r-full px-3" + (i == 2 ? ' bg-black text-white' : "")}>{category}</button>
+          ))}
+        </div>
+      )}
       {image == null ? (
         <input
           onChange={(e) => setImage(e.target.value)}
