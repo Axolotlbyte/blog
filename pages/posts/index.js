@@ -6,45 +6,46 @@ import { useRouter } from "next/router";
 import { check } from "../../services/user.service";
 import { deleteArticle } from "../../services/admin.service";
 
-const Explore = () => {
+const Home = () => {
   const router = useRouter();
   const [postItems, setPostItems] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [sort, setSort] = useState({ sort: "all", status: false });
   const [isAdmin, setIsAdmin] = useState(false);
-  useEffect(() => {
-    categories().then((res) => {
-      setCategoryList([...res.data]);
-    });
+  
+  // useEffect(() => {
+  //   categories().then((res) => {
+  //     setCategoryList([...res.data]);
+  //   });
 
-    if (router.query.sort) {
-      setSort({ ...router.query, status: true });
-    }
+  //   if (router.query.sort) {
+  //     setSort({ ...router.query, status: true });
+  //   }
 
-    check()
-      .then((res) => {
-        if (res.status) {
-          return setIsAdmin(res.role === "admin");
-        }
-        return;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  //   check()
+  //     .then((res) => {
+  //       if (res.status) {
+  //         return setIsAdmin(res.role === "admin");
+  //       }
+  //       return;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    if (!sort.status) {
-      posts().then((res) => {
-        setPostItems([...res.data]);
-      });
-    } else {
-      posts(`${sort.sort}`).then((res) => {
-        setPostItems([...res.data]);
-      });
-    }
-    // console.log({ query: router.query });
-  }, [sort]);
+  // useEffect(() => {
+  //   if (!sort.status) {
+  //     posts().then((res) => {
+  //       setPostItems([...res.data]);
+  //     });
+  //   } else {
+  //     posts(`${sort.sort}`).then((res) => {
+  //       setPostItems([...res.data]);
+  //     });
+  //   }
+  //   // console.log({ query: router.query });
+  // }, [sort]);
 
   return (
     <Layout>
@@ -125,4 +126,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default Home;

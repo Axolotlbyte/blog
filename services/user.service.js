@@ -62,9 +62,9 @@ export const comment = async (text, id) => {
   }
 };
 
-export const post = async (title, image, content, category) => {
+export const postBlog = async ({title, subtitle, image, content, category}) => {
   try {
-    const body = { title, image, content, category };
+    const body = { title, subtitle, image, content, category };
     const res = await axios.post(`/api/posts`, body);
     return res.data;
   } catch (error) {
