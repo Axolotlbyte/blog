@@ -69,17 +69,8 @@ const PostCard = ({
         onClick={() => router.push(`/posts/${id}`)}
         className="w-full z-30 h-auto cursor-pointer relative"
       >
-        <span className="flex w-fit items-center justify-start h-7 bg-black text-white pr-5 px-2 rounded-t-xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="bi bi-dot h-6 w-6"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-          </svg>
-
-          <p className="text-xl w-fit">{category ? category : "Category"}</p>
+        <span className="flex w-fit items-center justify-start bg-black text-white px-5 py-1 rounded-t-xl">
+          <p className="text-md w-fit">{category ? category : "Category"}</p>
         </span>
         <div className="aspect-img overflow-hidden rounded-2xl rounded-tl-none bg-gray-300">
           <div id="image" className="relative w-full h-full overflow-hidden">

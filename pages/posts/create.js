@@ -4,6 +4,7 @@ import { postBlog } from "../../services/user.service";
 
 import TitleEditor from "../../components/editor/TitleEditor";
 import Editor from "../../components/editor/ContentEditor";
+import Router from "next/router";
 
 const Create = () => {
   // const [options, setOptions] = useState([]);
@@ -19,6 +20,7 @@ const Create = () => {
     content: null,
     image: null,
     content: "",
+    category: "",
   });
 
   // useEffect(() => {
@@ -60,7 +62,7 @@ const Create = () => {
 
     console.log(post);
 
-    return await postBlog({ ...post, category: null })
+    return await postBlog({ ...post })
       .then((res) => {
         console.log(res);
         // setPost({
@@ -71,8 +73,17 @@ const Create = () => {
         //   content: "",
         // });
         // setEditorState(EditorState.createEmpty());
+        return Router.reload();
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleSave = () => {
+    localStorage.setItem('unpublishedWork', JSON.stringify(post))
+    // return console.log(localStorage.getItem('unpublishedWork'))
+    const posts = localStorage.getItem('unpublishedWork')
+
+    console.log(JSON.parse(posts))
   };
 
   return (
@@ -87,6 +98,8 @@ const Create = () => {
                 setSubtitle={(subtitle) => setPost({ ...post, subtitle })}
                 setImage={(image) => setPost({ ...post, image })}
                 image={post.image}
+                setCategory={(category) => setPost({ ...post, category })}
+                categoryValue={post.category}
               />
               {/* <ContentEditor
                 editorState={editorState}
@@ -99,7 +112,7 @@ const Create = () => {
             </div>
             <div className="flex gap-3">
               <button
-                onClick={handleSubmit}
+                onClick={handleSave}
                 className="justify-end mt-3 w-fit text-xl bg-gray-300 border-collapse border text-black font-semibold p-3 px-4 rounded-xl"
               >
                 Save
@@ -122,7 +135,11 @@ const Create = () => {
                       .root.children.filter((child) => child.tag == "h1")
                       .map((h) => (
                         <li className="list-item underline py-1">
-                          <a href={`#${'pppp'}`}>{(h.children[0]) == undefined ? '' : h.children[0].text}</a>
+                          <a href={`#${"pppp"}`}>
+                            {h.children[0] == undefined
+                              ? ""
+                              : h.children[0].text}
+                          </a>
                         </li>
                       ))}
                 {/* <li className="list-item underline">
@@ -134,9 +151,15 @@ const Create = () => {
             </div>
             <div className="bg-white h-64 p-2 mt-3 rounded-2xl border">
               <h1 className="text-2xl font-bold pb-2">Unpublished Work</h1>
-              <p className="">This is first one</p>
-              <hr className="my-1"/>
-              <p>This is second one</p>
+              <div className="hover:bg-slate-200 p-1 rounded cursor-pointer">
+                <p className="">This is first one</p>
+              </div>
+              <hr className="my-1" />
+              <div className="hover:bg-slate-200 p-1 rounded-lg cursor-pointer">
+                <p className="">This is second one</p>
+              </div>
+              {/* <hr className="my-1" /> */}
+              {/* <p>This is second one</p> */}
             </div>
           </div>
         </div>

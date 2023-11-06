@@ -31,7 +31,7 @@ const Card = ({
   ];
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden">
+    <div className="relative w-full h-fit rounded-2xl overflow-hidden">
       {admin ? <DeleteButton removeFunc={removeButtonFunc} /> : null}
       <div
         id="card"
@@ -51,20 +51,12 @@ const Card = ({
         <div
           className={
             "absolute p-2 rounded-xl" +
-            (small ? " top-0 left-0 w-4/5" : " top-5 left-5 w-1/2")
+            (small ? " top-0 left-0 w-4/5" : " top-0 left-0 md:top-5 md:left-5 w-full lg:w-1/2")
           }
         >
           <span className="flex w-fit items-center justify-center bg-white bg-opacity-50 border px-2 rounded-r-full rounded-l-full ">
-            {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              class="bi bi-dot h-7 w-7"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-            </svg> */}
 
-            <p className="text-xl font-light w-fit">
+            <p className="text-medium lg:text-xl font-light w-fit">
               {category ? category : "Category"}
             </p>
           </span>
@@ -72,7 +64,7 @@ const Card = ({
           <p
             className={
               "font-medium flex leading-snug break-words rounded-xl flex-wrap rounded-tl-none pt-2 " +
-              (small ? " text-3xl" : " text-4xl")
+              (small ? " text-xl lg:text-3xl" : " text-xl lg:text-4xl")
             }
           >
             {title
@@ -86,7 +78,7 @@ const Card = ({
           </p>
         </div>
 
-        <div className="absolute bottom-5 left-5 text-lg text-white">
+        <div className="absolute bottom-5 left-5 text-base lg:text-lg text-white">
           {new Date(date).getDate()},{" "}
           {
             months.filter((month) => month.id == new Date(date).getMonth())[0]

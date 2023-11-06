@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 const categories = [
   "Travel",
@@ -17,10 +18,13 @@ const TitleEditor = ({
   readOnly,
   title,
   subtitle,
+  categoryValue,
+  setCategory,
 }) => {
   if (readOnly) {
     return (
       <div className="flex flex-col gap-5 pb-5">
+        <p className="text-base ">{categoryValue}</p>
         <h1
           // onChange={(e) => setTitle(e.target.value)}
           // type="text"
@@ -29,6 +33,7 @@ const TitleEditor = ({
         >
           {title}
         </h1>
+        
         <h2
           // type="text"
           // onChange={(e) => setSubtitle(e.target.value)}
@@ -37,7 +42,6 @@ const TitleEditor = ({
         >
           {subtitle}
         </h2>
-
         <div className="w-full relative aspect-video overflow-hidden flex items-center rounded-2xl md:rounded-3xl ">
           <Image
             src={image}
@@ -69,7 +73,16 @@ const TitleEditor = ({
       ) : (
         <div className="flex flex-wrap w-full py-1 gap-3">
           {categories.map((category, i) => (
-            <button key={category} className={"p-2 font-medium border rounded-l-full rounded-r-full px-3" + (i == 2 ? ' bg-black text-white' : "")}>{category}</button>
+            <button
+              key={category}
+              onClick={() => setCategory(category)}
+              className={
+                "p-2 font-medium border rounded-l-full rounded-r-full px-3" +
+                (category == categoryValue ? " bg-black text-white" : "")
+              }
+            >
+              {category}
+            </button>
           ))}
         </div>
       )}

@@ -82,21 +82,21 @@ export default function Home({ recents, allPosts }) {
   return (
     <Layout bg={true}>
       <section className="h-auto w-11/12 mx-auto py-2">
-        <div className="flex flex-col h-screen overflow-hidden md:flex-row gap-10">
+        <div className="flex flex-col flex-wrap lg:flex-nowrap min-h-screen overflow-hidden lg:flex-row lg:gap-10">
           <div className="w-full">
-            <h1 className="text-6xl font-extrabold italic pb-9 drop-shadow-xl ">
+            <h1 className=" text-3xl md:text-4xl lg:text-6xl font-extrabold italic pb-4 lg:pb-9 drop-shadow-xl ">
               Cream of the Month's Crop
             </h1>
             <Card
               title={recents[0].title}
               key={recents[0]._id}
               id={recents[0]._id}
-              category={recents[0].category ? "" : "Test"}
+              category={recents[0].category}
               image={recents[0].image}
               date={recents[0].date}
             />
           </div>
-          <div className="w-full md:w-2/6 flex flex-col pt-16 gap-2 flex-shrink-0">
+          <div className="w-full lg:w-2/6 flex flex-col md:flex-row lg:flex-col py-8 lg:pt-16 gap-4 flex-shrink-0">
             <AdCard />
             <Card
               title={recents[1].title}
@@ -113,13 +113,13 @@ export default function Home({ recents, allPosts }) {
 
       <section className="bg-white py-8 pb-16">
         <p className="text-center text-4xl py-12 font-extrabold">Discover</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-10 gap-y-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-10 gap-y-14 w-11/12">
           {allPosts.map((post) => (
             <PostCard
               title={post.title}
               key={post._id}
               id={post._id}
-              category={post.category ? "" : "Test"}
+              category={post.category ? post.category : "Test"}
               image={post.image}
               date={post.date}
             />

@@ -9,11 +9,11 @@ const JoinNewsletter = ({post}) => {
       className="w-full bg-white py-8 md:py-20 bg-cover bg-no-repeat"
     >
       {/* <div></div> */}
-      <div className={"mx-auto rounded-2xl p-10 bg-slate-500 border-2 border-white bg-opacity-70 backdrop-blur-sm " + (post ? " md:w-10/12 w-11/12" : " w-11/12")}>
+      <div className={"mx-auto rounded-2xl p-10 bg-slate-500 border-2 border-white bg-opacity-70 backdrop-blur-sm " + (post ? " lg:w-10/12 w-11/12" : " w-11/12")}>
         <div className="flex items-center justify-center pt-5 md:pt-20">
           <h1 className="text-2xl md:text-4xl font-extrabold text-white">Subscribe to Our Newsletter</h1>
         </div>
-        <form className="flex flex-col md:flex-row w-full md:w-2/3 mx-auto gap-5 items-center justify-center py-8 md:pb-20 md:pt-10">
+        <form className="flex flex-col md:flex-row w-full lg:w-2/3 mx-auto gap-5 items-center justify-center py-8 md:pb-20 md:pt-10">
           <input
             type="text"
             className="w-full p-3 md:p-5 border text-lg md:text-xl rounded-r-full rounded-l-full bg-transparent placeholder:text-white focus:ring-2 hover:ring-2 ring-white"
