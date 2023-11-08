@@ -10,12 +10,17 @@ import AdCard from "../components/cards/AdCard";
 import JoinNewsletter from "../components/JoinNewsletter";
 
 export const getStaticProps = async () => {
-  console.log(process.env.API_URL);
-  const res = await axios.get(`${process.env.API_URL}/api/post`);
+  try {
+    console.log(process.env.API_URL);
+    const res = await axios.get(`${process.env.API_URL}/api/post`);
 
-  return {
-    props: { recents: [...res.data.slice(0, 2)], allPosts: [...res.data] },
-  };
+    return {
+      props: { recents: [...res.data.slice(0, 2)], allPosts: [...res.data] },
+    };
+  } catch (error) {
+    console.log(error)
+    return { recents: [{}]}
+  }
 };
 
 export default function Home({ recents, allPosts }) {
