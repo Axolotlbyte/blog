@@ -135,7 +135,7 @@ export default function Home({ recents, allPosts }) {
       <section className="pb-16 w-full bg-white">
         <div className="w-11/12 mx-auto bg-yellow-100 rounded-xl p-5">
           <h1 className="text-4xl">About</h1>
-          <p>The Description of the guy who made this beautiful website.</p>
+          <p>Passionate Developer and Creative Mind behind captivating web pages and dynamic React applications. A wizard with JavaScript, React.js, Bootstrap, and TailwindCSS, dedicated to optimizing performance and elevating user satisfaction. Seamlessly marries front-end and back-end for smooth, efficient systems. GitHub aficionado, orchestrating projects with finesse and fostering team synergy. As a freelance innovator, specializes in crafting custom tools and bots, revolutionizing investment monitoring. A proven pro in empowering clients with informed decisions for smarter, more successful investments.</p>
         </div>
       </section>
 
