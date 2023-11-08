@@ -131,7 +131,7 @@ const post = ({ title, content, image, _id, comment, category ,subtitle, allPost
                   : JSON.parse(content)
                       .root.children.filter((child) => child.tag == "h1")
                       .map((h) => (
-                        <li className="list-item underline py-2">
+                        <li key={Date.now()} className="list-item underline py-2">
                           <a href={`#${"pppp"}`}>
                             {h.children[0] == undefined
                               ? ""

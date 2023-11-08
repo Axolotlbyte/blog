@@ -85,7 +85,7 @@ export default function Home({ recents, allPosts }) {
         <div className="flex flex-col flex-wrap lg:flex-nowrap min-h-screen overflow-hidden lg:flex-row lg:gap-10">
           <div className="w-full">
             <h1 className=" text-3xl md:text-4xl lg:text-6xl font-extrabold italic pb-4 lg:pb-9 drop-shadow-xl ">
-              Cream of the Month's Crop
+              Cream of the Month&apos;s Crop
             </h1>
             <Card
               title={recents[0].title}

@@ -79,11 +79,11 @@ const Create = () => {
   };
 
   const handleSave = () => {
-    localStorage.setItem('unpublishedWork', JSON.stringify(post))
+    localStorage.setItem("unpublishedWork", JSON.stringify(post));
     // return console.log(localStorage.getItem('unpublishedWork'))
-    const posts = localStorage.getItem('unpublishedWork')
+    const posts = localStorage.getItem("unpublishedWork");
 
-    console.log(JSON.parse(posts))
+    console.log(JSON.parse(posts));
   };
 
   return (
@@ -134,7 +134,10 @@ const Create = () => {
                   : JSON.parse(post.content)
                       .root.children.filter((child) => child.tag == "h1")
                       .map((h) => (
-                        <li className="list-item underline py-1">
+                        <li
+                          key={Date.now()}
+                          className="list-item underline py-1"
+                        >
                           <a href={`#${"pppp"}`}>
                             {h.children[0] == undefined
                               ? ""
