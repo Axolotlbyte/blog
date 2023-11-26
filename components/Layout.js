@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { check } from "../services/user.service";
 import Account from "./Account";
 import Navbar from "./Navbar";
+import { Analytics } from "@vercel/analytics/react";
 
 const Layout = ({ children, bg }) => {
   const [toggle, setToggle] = useState(false);
@@ -37,12 +38,21 @@ const Layout = ({ children, bg }) => {
       /> */}
 
       <main
-        style={{ backgroundImage: `url(${bg ? '/bg-texture.jpg' : ""})` }}
+        style={{ backgroundImage: `url(${bg ? "/bg-texture.jpg" : ""})` }}
         className="min-h-screen bg-contain bg-white bg-repeat"
       >
         <header className="w-11/12 mx-auto py-5 flex justify-between items-center">
-          <p className="text-2xl md:text-4xl mx-auto font-extrabold pt-5 w-full">Blog.</p>
-          <p className={"flex-shrink-0 text-lg md:text-2xl font-semibold font-almarai" + (bg ? "" : " text-orange-400")}>بسم الله الرحمن الرحيم</p>
+          <p className="text-2xl md:text-4xl mx-auto font-extrabold pt-5 w-full">
+            Blog.
+          </p>
+          <p
+            className={
+              "flex-shrink-0 text-lg md:text-2xl font-semibold font-almarai" +
+              (bg ? "" : " text-orange-400")
+            }
+          >
+            بسم الله الرحمن الرحيم
+          </p>
         </header>
         <Account
           toggle={toggle}
@@ -51,6 +61,7 @@ const Layout = ({ children, bg }) => {
           loggedIn={() => setLoggedIn(true)}
         />
         {children}
+        <Analytics />
         {/* {isLoggedIn ? null : (
           <div className="py-28 bg-gradient-to-br from-purple-50 via-violet-100 to-blue-50">
             <div className="text-center w-10/12 pt-6 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lexical/react": "^0.12.2",
+    "@vercel/analytics": "^1.1.1",
     "axios": "^0.26.1",
     "cookie": "^0.4.2",
     "jsontokens": "^3.0.0",
