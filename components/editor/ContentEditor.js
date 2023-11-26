@@ -26,6 +26,7 @@ import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import { useEffect, useState } from "react";
 import { EmojiNode } from "./nodes/EmojiNode";
 import ImagesPlugin from "./plugins/ImagePlugin";
+import { Router } from "next/router";
 
 // Link
 // Code
@@ -74,7 +75,7 @@ function OnChangePlugin({ onChange }) {
   }, [editor, onChange]);
 }
 
-export default function Editor({ setContent, readOnly, content }) {
+export default function Editor({ setContent, readOnly, content, id }) {
   const [editorState, setEditorState] = useState();
   function onChange(editorState) {
     // Call toJSON on the EditorState object, which produces a serialization safe string
@@ -84,17 +85,20 @@ export default function Editor({ setContent, readOnly, content }) {
   }
 
   useEffect(() => {
+    // if (readOnly) {
+    //   setEditorState(content);
+    //   return;
+    // }
+    
     setContent(editorState);
   }, [editorState]);
 
-  const value =
-    '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Helllo this is itttttttttttttttttttttttttttttttttttt","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"heading","version":1,"tag":"h1"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"it works finlleh hell yeh bby cmon ","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}';
-
   return (
     <LexicalComposer
+      key={id || ""}
       initialConfig={{
         ...editorConfig,
-        editorState: content || editorState,
+        editorState: readOnly ? content : editorState,
         editable: !readOnly,
       }}
     >
