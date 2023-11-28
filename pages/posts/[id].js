@@ -47,7 +47,7 @@ const post = ({
   console.log(allPosts);
 
   return (
-    <Layout bg={false}>
+    <Layout title={title} bg={false}>
       <div className="background lg:w-10/12 mx-auto flex pb-20 pt-10 items-center justify-center h-auto">
         <section className="h-auto min-h-screen gap-10 mx-auto flex ">
           <div className="flex bg-white flex-grow-0 flex-shrink rounded-2xl flex-col items-end w-11/12 lg:w-3/4 mx-auto">
@@ -59,7 +59,12 @@ const post = ({
                 image={image}
                 categoryValue={category}
               />
-              <Editor readOnly={true} id={_id} setContent={() => ""} content={content} />
+              <Editor
+                readOnly={true}
+                id={_id}
+                setContent={() => ""}
+                content={content}
+              />
               <About />
             </div>
           </div>
